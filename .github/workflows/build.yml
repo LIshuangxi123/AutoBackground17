@@ -41,7 +41,7 @@ jobs:
         run: |
           set +e
           ls "$THEOS/sdks/iPhoneOS17.sdk/System/Library/PrivateFrameworks/" | grep -i -E "preferences|coreservices" || true
-          make clean package FINALPACKAGE=1 VERBOSE=1 2>&1 | tee build.log
+          make clean package FINALPACKAGE=1 2>&1 | tee build.log
           EXIT=${PIPESTATUS[0]}
           ls -la packages/ 2>/dev/null || true
           echo "MAKE_EXIT=$EXIT"
