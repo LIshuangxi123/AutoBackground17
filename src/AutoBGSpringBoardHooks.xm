@@ -11,6 +11,15 @@
 // 直接报告每个类/方法在你当前系统上是否存在，便于真机验证。
 // ============================================================
 
+// 自声明私有类接口，让编译器认识我们用到的属性/方法
+@interface FBApplicationProcess : NSObject
+- (NSString *)bundleIdentifier;
+@end
+
+@interface SBApplication : NSObject
+- (NSString *)bundleIdentifier;
+@end
+
 %hook FBApplicationProcess
 
 - (void)suspend {
