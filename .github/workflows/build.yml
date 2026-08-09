@@ -3,7 +3,11 @@ name: Build deb
 on:
   push:
     branches: [ "main", "master" ]
+    paths-ignore: [ "build.log" ]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -41,6 +45,15 @@ jobs:
           ls -la packages/ 2>/dev/null || true
           echo "MAKE_EXIT=$EXIT"
           exit $EXIT
+
+      - name: Publish build.log to repo (debug)
+        if: failure()
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add build.log
+          git commit -m "debug: build log" || true
+          git push origin HEAD:main || true
 
       - name: Upload build log
         if: always()

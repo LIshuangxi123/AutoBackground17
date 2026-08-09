@@ -1,6 +1,17 @@
 #import <Preferences/Preferences.h>
-#import <MobileCoreServices/MobileCoreServices.h>
 #import "AutoBGConfig.h"
+
+// 自声明私有类接口（避免新版 SDK 头文件缺失导致编译失败）
+@interface LSApplicationProxy : NSObject
+@property (nonatomic, readonly) NSString *bundleIdentifier;
+@property (nonatomic, readonly) NSString *localizedName;
+@property (nonatomic, readonly) NSString *applicationType;
+@end
+
+@interface LSApplicationWorkspace : NSObject
++ (id)defaultWorkspace;
+- (NSArray *)allInstalledApplications;
+@end
 
 static NSString *const AutoBGPrefsDomain = @"com.autobg.autobackground17";
 
