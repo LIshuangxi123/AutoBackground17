@@ -7,7 +7,7 @@ include $(THEOS)/makefiles/common.mk
 TWEAK_NAME = AutoBackground17 AutoBackground17App
 
 # SpringBoard 侧：阻止应用被挂起/冻结 = 真后台（主方案）
-AutoBackground17_FILES = src/AutoBGSpringBoardHooks.x.m src/AutoBGConfig.m
+AutoBackground17_FILES = src/AutoBGSpringBoardHooks.xm src/AutoBGConfig.m
 AutoBackground17_CFLAGS = -fobjc-arc -Wno-deprecated-declarations
 
 # 应用侧：静音音频保活（备用方案，需在设置中开启）
