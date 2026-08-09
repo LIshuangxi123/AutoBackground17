@@ -23,6 +23,7 @@ BUNDLE_NAME = AutoBackground17Settings
 AutoBackground17Settings_FILES = settings/AutoBGRootListController.m settings/AutoBGAppListController.m src/AutoBGConfig.m
 AutoBackground17Settings_INSTALL_PATH = /Library/PreferenceBundles
 AutoBackground17Settings_CFLAGS = -fobjc-arc -Isrc
+AutoBackground17Settings_LDFLAGS = -F$(THEOS_SDK_PATH)/System/Library/PrivateFrameworks -F$(THEOS_SDK_PATH)/System/Library/Frameworks
 AutoBackground17Settings_FRAMEWORKS = UIKit
 AutoBackground17Settings_PRIVATE_FRAMEWORKS = Preferences CoreServices MobileCoreServices
 
