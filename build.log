@@ -34,11 +34,13 @@ ld: warning: -multiply_defined is obsolete
 [0;34m==> [1;39mSigning AutoBackground17App…[m
 [1;31m> [1;3;39mMaking all for bundle AutoBackground17Settings…[m
 [0;32m==> [1;39mCompiling settings/AutoBGRootListController.m (arm64)…[m
-[1msettings/AutoBGRootListController.m:2:9: [0m[0;1;31mfatal error: [0m[1m'AutoBGConfig.h' file not found[0m
-#import "AutoBGConfig.h"
-[0;1;32m        ^~~~~~~~~~~~~~~~
-[0m1 error generated.
-make[3]: *** [/Users/runner/work/AutoBackground17/AutoBackground17/.theos/obj/arm64/settings/AutoBGRootListController.m.ce136c8a.o] Error 1
+[0;32m==> [1;39mCompiling settings/AutoBGAppListController.m (arm64)…[m
+[0;32m==> [1;39mCompiling src/AutoBGConfig.m (arm64)…[m
+[0;33m==> [1;39mLinking bundle AutoBackground17Settings (arm64)…[m
+ld: warning: -multiply_defined is obsolete
+ld: framework 'Preferences' not found
+clang: [0;1;31merror: [0m[1mlinker command failed with exit code 1 (use -v to see invocation)[0m
+make[3]: *** [/Users/runner/work/AutoBackground17/AutoBackground17/.theos/obj/arm64/AutoBackground17Settings.bundle/AutoBackground17Settings] Error 1
 make[2]: *** [/Users/runner/work/AutoBackground17/AutoBackground17/.theos/obj/arm64/AutoBackground17Settings.bundle/AutoBackground17Settings] Error 2
 make[1]: *** [internal-bundle-all_] Error 2
 make: *** [AutoBackground17Settings.all.bundle.variables] Error 2
