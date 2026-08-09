@@ -32,8 +32,8 @@ jobs:
           cp -RL "$XCODE_SDK" "$THEOS/sdks/iPhoneOS17.sdk"
           ls -la "$THEOS/sdks/"
 
-      - name: Install dpkg
-        run: brew install dpkg
+      - name: Install build tools (dpkg, ldid)
+        run: brew install dpkg ldid
 
       - name: Build package
         env:
