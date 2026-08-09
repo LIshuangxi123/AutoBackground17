@@ -67,13 +67,20 @@ jobs:
       - name: Publish deb to repo (dist)
         if: success()
         run: |
+          set -e
           mkdir -p dist
-          cp packages/*.deb dist/ 2>/dev/null || true
+          ls -la packages/ || true
+          cp packages/*.deb dist/
+          ls -la dist/
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
           git add dist/
-          git commit -m "build: publish deb" || true
-          git push origin HEAD:main || true
+          if git diff --cached --quiet; then
+            echo "no new deb to commit"
+          else
+            git commit -m "build: publish deb"
+            git push origin HEAD:main
+          fi
       - name: Upload deb artifact
         if: success()
         uses: actions/upload-artifact@v4
