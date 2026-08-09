@@ -19,21 +19,38 @@ jobs:
           sudo chown "$(whoami)" "$THEOS"
           git clone --recursive --depth 1 https://github.com/theos/theos.git "$THEOS"
 
-      - name: Setup iOS SDK (从 Xcode 提取)
+      - name: Setup iOS SDK (from Xcode)
         env:
           THEOS: /opt/theos
         run: |
           mkdir -p "$THEOS/sdks"
           XCODE_SDK="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk"
-          cp -R "$XCODE_SDK" "$THEOS/sdks/iPhoneOS17.sdk"
+          cp -RL "$XCODE_SDK" "$THEOS/sdks/iPhoneOS17.sdk"
+          ls -la "$THEOS/sdks/"
+
+      - name: Install dpkg
+        run: brew install dpkg
 
       - name: Build package
         env:
           THEOS: /opt/theos
         run: |
-          make clean package FINALPACKAGE=1
+          set +e
+          make clean package FINALPACKAGE=1 2>&1 | tee build.log
+          EXIT=${PIPESTATUS[0]}
+          ls -la packages/ 2>/dev/null || true
+          echo "MAKE_EXIT=$EXIT"
+          exit $EXIT
 
-      - name: Upload deb 产物
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: build.log
+
+      - name: Upload deb artifact
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: AutoBackground17-deb
