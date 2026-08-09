@@ -1,0 +1,9 @@
+Package: com.autobg.autobackground17
+Name: 自动真后台 (AutoBackground17)
+Version: 1.0.0
+Architecture: iphoneos-arm64
+Depends: mobilesubstrate (>= 0.9.5000), preferenceloader (>= 2.2.4)
+Description: 自动让应用保持“真后台”运行：进入后台后进程不被系统挂起/冻结，持续运行。支持 iOS 17.0-17.3.1 无根（rootless）越狱。
+Maintainer: AutoBG
+Author: AutoBG
+Section: Tweaks

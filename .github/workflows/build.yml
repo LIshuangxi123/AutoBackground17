@@ -1,0 +1,40 @@
+name: Build deb
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Theos
+        env:
+          THEOS: /opt/theos
+        run: |
+          sudo mkdir -p "$THEOS"
+          sudo chown "$(whoami)" "$THEOS"
+          git clone --recursive --depth 1 https://github.com/theos/theos.git "$THEOS"
+
+      - name: Setup iOS SDK (从 Xcode 提取)
+        env:
+          THEOS: /opt/theos
+        run: |
+          mkdir -p "$THEOS/sdks"
+          XCODE_SDK="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk"
+          cp -R "$XCODE_SDK" "$THEOS/sdks/iPhoneOS17.sdk"
+
+      - name: Build package
+        env:
+          THEOS: /opt/theos
+        run: |
+          make clean package FINALPACKAGE=1
+
+      - name: Upload deb 产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: AutoBackground17-deb
+          path: packages/*.deb

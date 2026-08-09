@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>title</key>
+	<string>自动真后台</string>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>type</key>
+			<string>PSSwitchCell</string>
+			<key>title</key>
+			<string>启用</string>
+			<key>key</key>
+			<string>Enabled</string>
+			<key>default</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>PSSwitchCell</string>
+			<key>title</key>
+			<string>保持所有应用</string>
+			<key>key</key>
+			<string>KeepAllApps</string>
+			<key>default</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>PSSwitchCell</string>
+			<key>title</key>
+			<string>音频保活（备用）</string>
+			<key>key</key>
+			<string>AudioFallback</string>
+			<key>default</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>PSSwitchCell</string>
+			<key>title</key>
+			<string>禁止上滑终止</string>
+			<key>key</key>
+			<string>PreventManualKill</string>
+			<key>default</key>
+			<false/>
+		</dict>
+	</array>
+</dict>
+</plist>
